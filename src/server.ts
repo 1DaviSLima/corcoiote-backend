@@ -1,31 +1,16 @@
 import express from "express";
+import CustomerRouter from './Routes/customer.routes.ts'
 
 const app = express();
 
-const users = [
-	{
-		name: "Cristiano Ronaldo",
-		status: true,
-	},
-	{
-		name: "Lionel Messi",
-		status: true,
-	},
-	{
-		name: "Neymar",
-		status: false,
-	},
-];
-
 app.use(express.json());
 
-app.get("/", (_request, response) => {
-	response.json({ message: "Hello!" });
+app.use('/customers', CustomerRouter);
+
+app.use((_request, response) => {
+	response.status(404).json({massage: 'not found!'})
 });
 
-app.get("/users", (_request, response) => {
-	response.json(users);
-});
 app.listen(Number(process.env.PORT));
 
 // import http, { request } from "node:http";
