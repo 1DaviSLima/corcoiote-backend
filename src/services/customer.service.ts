@@ -1,11 +1,11 @@
 import { customers } from "../moks/customer.moks.ts";
 import type { CreateCustomer, Customer, UpdateCustomer } from "../moks/types.ts";
 
-function findAllCustomers(): Customer[] {
+export function findAllCustomers(): Customer[] {
     return customers;
 }
 
-function findCustomerById(id: number): Customer {
+export function findCustomerById(id: number): Customer {
     const customer = customers.find((customer) => {
        return customer.id === id;
     });
@@ -16,7 +16,7 @@ function findCustomerById(id: number): Customer {
     return customer;
 }
 
-function insertCustomer({ name, email }: CreateCustomer): Customer {
+export function insertCustomer({ name, email }: CreateCustomer): Customer {
     const id = customers[customers.length - 1].id;
     const customer: Customer = {
         id: id + 1,
@@ -28,7 +28,7 @@ function insertCustomer({ name, email }: CreateCustomer): Customer {
     return customer
 }
 
-function modifyCustomer(
+export function modifyCustomer(
     id: number,
     { name, email, status }: UpdateCustomer
 )
@@ -45,7 +45,7 @@ function modifyCustomer(
     if (status !== undefined) customer.status === status
 }
 
-function removeCustomer(id: number): void {
+export function removeCustomer(id: number): void {
     const index = customers.findIndex((customer) => { 
         return customer.id === id
     })
