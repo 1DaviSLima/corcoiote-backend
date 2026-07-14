@@ -1,11 +1,13 @@
 import express from "express";
-import CustomerRouter from './Routes/customer.routes.ts'
+import CustomerRouter from "./Routes/customer.routes.ts";
+import InvoicesRouter from "./Routes/invoices.routes.ts"
 
 const app = express();
 
 app.use(express.json());
 
 app.use('/customers', CustomerRouter);
+app.use('/invoices', InvoicesRouter);
 
 app.use((_request, response) => {
 	response.status(404).json({massage: 'not found!'})
